@@ -1,13 +1,31 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowDown, Download, Github, Linkedin, Mail, Code2, Sparkles } from "lucide-react"
+import { ArrowDown, Download, Github, Linkedin, Mail, Code2, Sparkles, CheckCircle, Globe, Terminal, Braces, Command } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null)
+  const [isDownloading, setIsDownloading] = useState(false)
+  const [downloadComplete, setDownloadComplete] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  
+  // Generate stable particle positions only on client
+  const [particles, setParticles] = useState<Array<{id: number, left: number, top: number}>>([])
+  
+  useEffect(() => {
+    setMounted(true)
+    // Generate particles only on client side
+    const generatedParticles = [...Array(20)].map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+    }))
+    setParticles(generatedParticles)
+  }, [])
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -15,6 +33,34 @@ export function HeroSection() {
   
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
+  const handleDownloadCV = async () => {
+    setIsDownloading(true)
+    setDownloadComplete(false)
+    
+    try {
+      // Create a link element and trigger download
+      const link = document.createElement('a')
+      link.href = '/Nahom_Worku_CV.pdf'
+      link.download = 'Nahom_Worku_CV.pdf'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      // Simulate completion for better UX
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      setDownloadComplete(true)
+      
+      // Reset after showing success state
+      setTimeout(() => {
+        setDownloadComplete(false)
+        setIsDownloading(false)
+      }, 2000)
+    } catch (error) {
+      console.error('Download failed:', error)
+      setIsDownloading(false)
+    }
+  }
 
   return (
     <section
@@ -77,6 +123,82 @@ export function HeroSection() {
           <Sparkles className="h-8 w-8 text-primary" />
         </div>
       </motion.div>
+
+      {/* Creative Particles Background - Only render on client */}
+      {mounted && particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute w-1 h-1 bg-primary/30 rounded-full"
+          style={{
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+          }}
+          animate={{
+            y: [0, -100, 0],
+            x: [0, Math.random() * 50 - 25, 0],
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: Math.random() * 3 + 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* 3D Rotating Cube */}
+      <motion.div
+        className="absolute top-1/4 right-[20%] hidden lg:block"
+        style={{ perspective: "1000px" }}
+      >
+        <motion.div
+          animate={{ rotateX: [0, 360], rotateY: [0, 360] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="w-16 h-16 relative"
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          <div className="absolute inset-0 border-2 border-primary/30 rounded-lg" />
+          <div className="absolute inset-0 border-2 border-primary/30 rounded-lg" style={{ transform: "rotateY(90deg)" }} />
+          <div className="absolute inset-0 border-2 border-primary/30 rounded-lg" style={{ transform: "rotateX(90deg)" }} />
+        </motion.div>
+      </motion.div>
+
+      {/* Floating Code Snippets */}
+      <motion.div
+        animate={{ y: [0, -15, 0], opacity: [0.3, 0.8, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[20%] left-[10%] hidden lg:block font-mono text-xs text-primary/60"
+      >
+        {`const dev = {
+  skills: ["React", "Node.js"],
+  passion: "Full-Stack"
+}`}
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, 15, 0], opacity: [0.3, 0.8, 0.3] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-[25%] right-[10%] hidden lg:block font-mono text-xs text-primary/60"
+      >
+        {`function create() {
+  return "Amazing";
+}`}
+      </motion.div>
+
+      {/* Interactive Geometric Shapes */}
+      <motion.div
+        animate={{ rotate: 45, scale: [1, 1.2, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[60%] left-[5%] hidden lg:block w-20 h-20 border-2 border-primary/20 rotate-45"
+      />
+      
+      <motion.div
+        animate={{ rotate: -45, scale: [1.2, 1, 1.2] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute top-[30%] right-[5%] hidden lg:block w-16 h-16 border-2 border-primary/20 rounded-full"
+      />
       
       <motion.div style={{ opacity }} className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -148,15 +270,35 @@ export function HeroSection() {
                   </a>
                 </Button>
                 <Button
-                  asChild
                   variant="outline"
                   size="lg"
-                  className="magnetic-btn border-border hover:border-primary hover:text-primary px-8 py-6 text-base font-medium rounded-full bg-transparent"
+                  onClick={handleDownloadCV}
+                  disabled={isDownloading}
+                  className={`magnetic-btn border-border hover:border-primary hover:text-primary px-8 py-6 text-base font-medium rounded-full bg-transparent transition-all duration-300 ${
+                    downloadComplete 
+                      ? 'border-green-500 text-green-500 bg-green-500/10' 
+                      : isDownloading 
+                      ? 'border-primary/50 text-primary/70' 
+                      : ''
+                  }`}
                 >
-                  <a href="/cv.pdf" download>
-                    <Download className="mr-2 h-4 w-4" />
-                    Download CV
-                  </a>
+                  <motion.div
+                    animate={isDownloading ? { rotate: 360 } : { rotate: 0 }}
+                    transition={{ duration: 1, repeat: isDownloading ? Infinity : 0, ease: "linear" }}
+                    className="mr-2"
+                  >
+                    {downloadComplete ? (
+                      <CheckCircle className="h-4 w-4" />
+                    ) : (
+                      <Download className="h-4 w-4" />
+                    )}
+                  </motion.div>
+                  {downloadComplete 
+                    ? 'Downloaded!' 
+                    : isDownloading 
+                    ? 'Downloading...' 
+                    : 'Download CV'
+                  }
                 </Button>
               </motion.div>
 
@@ -188,53 +330,170 @@ export function HeroSection() {
               </motion.div>
             </div>
             
-            {/* Profile Image - Right Side */}
+            {/* Modern Visual Element - Right Side */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 100 }}
               className="lg:col-span-2 flex justify-center lg:justify-end"
             >
               <div className="relative">
-                {/* Decorative rings */}
+                {/* Animated Code/Design Element */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute -inset-4 rounded-full border border-primary/20"
-                />
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                  className="absolute -inset-8 rounded-full border border-primary/10"
-                />
-                
-                {/* Glow effect */}
-                <div className="absolute inset-0 rounded-full bg-primary/20 blur-[60px]" />
-                
-                {/* Profile image container */}
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-primary/30 emerald-glow"
+                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  className="relative w-80 h-80 sm:w-96 sm:h-96"
                 >
-                  <Image
-                    src="/profile.jpg"
-                    alt="Nahom Worku - Full-Stack Developer"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
+                  {/* Central Terminal Window */}
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 glass-card rounded-2xl border border-primary/20 p-6 backdrop-blur-xl"
+                  >
+                    {/* Terminal Header */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <div className="flex gap-2">
+                          <motion.div
+                            whileHover={{ scale: 1.2 }}
+                            className="w-3 h-3 rounded-full bg-red-500 cursor-pointer"
+                          />
+                          <motion.div
+                            whileHover={{ scale: 1.2 }}
+                            className="w-3 h-3 rounded-full bg-yellow-500 cursor-pointer"
+                          />
+                          <motion.div
+                            whileHover={{ scale: 1.2 }}
+                            className="w-3 h-3 rounded-full bg-green-500 cursor-pointer"
+                          />
+                        </div>
+                        <span className="text-xs text-muted-foreground ml-2">portfolio-terminal</span>
+                      </div>
+                      <motion.div
+                        animate={{ rotate: [0, 180, 360] }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                      >
+                        <Terminal className="h-4 w-4 text-primary/60" />
+                      </motion.div>
+                    </div>
+                    
+                    {/* Terminal Content with Enhanced Animation */}
+                    <div className="space-y-3 font-mono text-sm">
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 }}
+                        className="text-green-400 flex items-center gap-2"
+                      >
+                        <span className="text-primary">$</span>
+                        <span className="typing-animation">npm create portfolio@latest</span>
+                      </motion.div>
+                      
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1 }}
+                        className="text-blue-400 flex items-center gap-2"
+                      >
+                        <Command className="h-3 w-3" />
+                        <span>✨ Creating modern portfolio...</span>
+                      </motion.div>
+                      
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 1.5 }}
+                        className="text-purple-400 flex items-center gap-2"
+                      >
+                        <Braces className="h-3 w-3" />
+                        <span>🚀 Deploying to production...</span>
+                      </motion.div>
+                      
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 2 }}
+                        className="text-emerald-400 flex items-center gap-2"
+                      >
+                        <span className="text-green-500">✓</span>
+                        <span>Portfolio ready! 🎉</span>
+                      </motion.div>
+                      
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 2.5 }}
+                        className="flex items-center gap-2"
+                      >
+                        <span className="text-primary">$</span>
+                        <motion.span
+                          animate={{ opacity: [1, 0.5, 1] }}
+                          transition={{ duration: 1, repeat: Infinity }}
+                          className="text-foreground"
+                        >
+                          <span className="inline-block w-2 h-4 bg-primary current-color"></span>
+                        </motion.span>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Progress Bar */}
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 3, delay: 0.5 }}
+                      className="mt-4 h-1 bg-muted rounded-full overflow-hidden"
+                    >
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 3, delay: 0.5 }}
+                        className="h-full bg-gradient-to-r from-primary to-emerald-500 rounded-full"
+                      />
+                    </motion.div>
+                  </motion.div>
                   
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                  {/* Floating Tech Icons */}
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute -top-4 -left-4 w-16 h-16"
+                  >
+                    <div className="w-full h-full rounded-full bg-primary/10 backdrop-blur-sm flex items-center justify-center">
+                      <Code2 className="h-8 w-8 text-primary" />
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute -bottom-4 -right-4 w-16 h-16"
+                  >
+                    <div className="w-full h-full rounded-full bg-primary/10 backdrop-blur-sm flex items-center justify-center">
+                      <Sparkles className="h-8 w-8 text-primary" />
+                    </div>
+                  </motion.div>
+                  
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/2 -left-8 w-12 h-12"
+                  >
+                    <div className="w-full h-full rounded-full bg-primary/10 backdrop-blur-sm flex items-center justify-center">
+                      <Globe className="h-6 w-6 text-primary" />
+                    </div>
+                  </motion.div>
                 </motion.div>
                 
-                {/* Floating badge */}
+                {/* Glow Effects */}
+                <div className="absolute inset-0 rounded-full bg-primary/10 blur-[80px]" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/10 to-blue-500/10 blur-[100px]" />
+                
+                {/* Floating Badge */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8, duration: 0.5 }}
-                  className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full glass emerald-glow-sm"
+                  className="absolute -bottom-6 -right-6 px-4 py-2 rounded-full glass emerald-glow-sm"
                 >
                   <span className="text-sm font-medium text-primary">3+ Years Exp</span>
                 </motion.div>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 import { Menu, X, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle, ThemeToggleCompact } from "@/components/ui/theme-toggle"
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -84,38 +85,49 @@ export function Navigation() {
         </motion.a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center gap-1">
-          {navLinks.map((link, index) => {
-            const isActive = activeSection === link.href
-            return (
-              <motion.li
-                key={link.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-              >
-                <a
-                  href={link.href}
-                  className={`relative px-4 py-2 text-sm transition-colors ${
-                    isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
+        <div className="hidden md:flex items-center gap-4">
+          <ul className="flex items-center gap-1">
+            {navLinks.map((link, index) => {
+              const isActive = activeSection === link.href
+              return (
+                <motion.li
+                  key={link.name}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
-                  {link.name}
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeNav"
-                      className="absolute inset-0 rounded-full bg-primary/10"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-300 ${
-                    isActive ? "w-4" : "w-0"
-                  }`} />
-                </a>
-              </motion.li>
-            )
-          })}
-        </ul>
+                  <a
+                    href={link.href}
+                    className={`relative px-4 py-2 text-sm transition-colors ${
+                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNav"
+                        className="absolute inset-0 rounded-full bg-primary/10"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-300 ${
+                      isActive ? "w-4" : "w-0"
+                    }`} />
+                  </a>
+                </motion.li>
+              )
+            })}
+          </ul>
+          
+          {/* Theme Toggle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+          >
+            <ThemeToggle />
+          </motion.div>
+        </div>
 
         {/* CTA Button - Desktop */}
         <motion.div
@@ -134,36 +146,41 @@ export function Navigation() {
         </motion.div>
 
         {/* Mobile Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden relative"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <AnimatePresence mode="wait">
-            {isMobileMenuOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X className="h-5 w-5" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Menu className="h-5 w-5" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </Button>
+        <div className="flex items-center gap-2 md:hidden">
+          {/* Theme Toggle - Mobile */}
+          <ThemeToggleCompact />
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            className="relative"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <AnimatePresence mode="wait">
+              {isMobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="h-5 w-5" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="h-5 w-5" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </Button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
