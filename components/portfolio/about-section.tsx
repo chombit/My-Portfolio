@@ -6,27 +6,27 @@ import { Code2, Rocket, Users, Coffee, Zap, Globe } from "lucide-react"
 import Image from "next/image"
 
 const stats = [
-  { value: "3+", label: "Years Experience", icon: Rocket },
-  { value: "15+", label: "Projects Completed", icon: Code2 },
-  { value: "10+", label: "Happy Clients", icon: Users },
-  { value: "1000+", label: "Cups of Coffee", icon: Coffee },
+  { value: "3+", label: "Years Building", icon: Rocket },
+  { value: "15+", label: "Projects Launched", icon: Code2 },
+  { value: "100%", label: "Client Satisfaction", icon: Users },
+  { value: "∞", label: "Ideas Generated", icon: Coffee },
 ]
 
 const highlights = [
   {
     icon: Zap,
-    title: "Fast & Efficient",
-    description: "Building optimized, high-performance applications with modern best practices"
+    title: "Lightning Fast",
+    description: "Crafting high-performance applications with optimized code and modern frameworks"
   },
   {
     icon: Globe,
-    title: "Full-Stack Expertise",
-    description: "From frontend interfaces to backend APIs, databases, and cloud deployment"
+    title: "End-to-End Solutions",
+    description: "From pixel-perfect UIs to scalable APIs and cloud infrastructure"
   },
   {
     icon: Users,
-    title: "Collaborative",
-    description: "Working effectively with teams and clients to deliver exceptional results"
+    title: "Client-First Approach",
+    description: "Transforming visions into reality through collaboration and clear communication"
   }
 ]
 
@@ -62,11 +62,11 @@ export function AboutSection() {
             About Me
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-            Turning Ideas Into Digital Reality
+            Crafting Digital Experiences That Matter
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-pretty">
-            A passionate developer focused on creating impactful web solutions that combine 
-            beautiful design with powerful functionality
+            Full-stack developer passionate about building innovative solutions that bridge the gap between 
+            creative design and powerful functionality
           </p>
         </motion.div>
 

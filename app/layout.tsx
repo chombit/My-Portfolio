@@ -20,15 +20,14 @@ export const metadata: Metadata = {
   description: 'Full-Stack Web Developer specializing in React.js, Node.js, TypeScript, and PostgreSQL. Building scalable web applications with modern technologies.',
   keywords: ['Full-Stack Developer', 'React.js', 'Node.js', 'TypeScript', 'Web Developer', 'Nahom Worku'],
   authors: [{ name: 'Nahom Worku' }],
-  generator: 'v0.app',
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/favicon-light.svg',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/favicon-dark.svg',
         media: '(prefers-color-scheme: dark)',
       },
       {
@@ -37,6 +36,7 @@ export const metadata: Metadata = {
       },
     ],
     apple: '/apple-icon.png',
+    shortcut: '/favicon-dark.svg',
   },
 }
 

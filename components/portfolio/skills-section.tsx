@@ -62,7 +62,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: "easeOut",
+      ease: "easeOut" as const,
     },
   },
 }
@@ -103,10 +103,10 @@ export function SkillsSection() {
             Tech Stack
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Skills & Technologies
+            Technical Arsenal
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive toolkit for building modern, scalable web applications
+            Cutting-edge technologies and frameworks I wield to build exceptional digital products
           </p>
         </motion.div>
 
@@ -126,8 +126,8 @@ export function SkillsSection() {
                 <Layout className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-foreground">Frontend Development</h3>
-                <p className="text-sm text-muted-foreground">Building beautiful user interfaces</p>
+                <h3 className="text-xl font-semibold text-foreground">Frontend Craftsmanship</h3>
+                <p className="text-sm text-muted-foreground">Creating stunning, responsive user experiences</p>
               </div>
             </div>
             
@@ -183,8 +183,8 @@ export function SkillsSection() {
                 <Server className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-foreground">Backend Development</h3>
-                <p className="text-sm text-muted-foreground">Building robust server-side solutions</p>
+                <h3 className="text-xl font-semibold text-foreground">Backend Architecture</h3>
+                <p className="text-sm text-muted-foreground">Engineering scalable, secure server solutions</p>
               </div>
             </div>
             
@@ -211,7 +211,7 @@ export function SkillsSection() {
               <div className="p-3 rounded-xl bg-primary/10">
                 <Zap className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">Tools & More</h3>
+              <h3 className="text-xl font-semibold text-foreground">DevOps & Tools</h3>
             </div>
             
             <motion.div

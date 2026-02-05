@@ -82,10 +82,10 @@ export function ContactSection() {
             Get In Touch
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            {"Let's Work Together"}
+            Let's Build Something Amazing
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to discuss opportunities? Feel free to reach out!
+            Ready to bring your vision to life? I'm here to help create something extraordinary together
           </p>
         </motion.div>
 
@@ -144,8 +144,8 @@ export function ContactSection() {
                 <span className="text-sm font-medium text-primary">Available for hire</span>
               </div>
               <p className="text-muted-foreground text-sm">
-                Currently open to full-time positions, freelance projects, and collaboration
-                opportunities.
+                Currently seeking exciting opportunities in full-stack development, 
+                innovative projects, and meaningful collaborations.
               </p>
             </motion.div>
           </motion.div>
