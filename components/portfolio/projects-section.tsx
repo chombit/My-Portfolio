@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView, AnimatePresence } from "framer-motion"
-import { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { ExternalLink, Github, Smartphone, Globe, Users, Building2, ArrowUpRight, Plane } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -76,7 +76,7 @@ function ProjectCard({
   project,
   index,
 }: {
-  project: (typeof projects)[0]
+  project: typeof projects[0]
   index: number
 }) {
   const ref = useRef(null)
@@ -84,6 +84,11 @@ function ProjectCard({
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const [techHovered, setTechHovered] = useState<string | null>(null)
+
+  // Reset image error when project changes
+  useEffect(() => {
+    setImageError(false)
+  }, [project.image])
 
   return (
     <motion.div
@@ -105,7 +110,7 @@ function ProjectCard({
         <motion.div
           animate={{ scale: isHovered ? 1.1 : 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 w-full h-full"
         >
           {imageError ? (
             <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
@@ -113,11 +118,15 @@ function ProjectCard({
             </div>
           ) : (
             <Image
-              src={project.image || "/placeholder.svg"}
+              src={project.image}
               alt={project.title}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={index < 2}
               onError={() => setImageError(true)}
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
           )}
         </motion.div>
