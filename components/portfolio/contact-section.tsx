@@ -4,7 +4,7 @@ import React from "react"
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Send, Mail, MapPin, Phone, CheckCircle, AlertCircle } from "lucide-react"
+import { Send, Mail, MapPin, Linkedin, CheckCircle, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -48,8 +48,8 @@ export function ContactSection() {
     {
       icon: Mail,
       label: "Email",
-      value: "nahomworku@285gmail.com",
-      href: "mailto:nahomworku@285gmail.com",
+      value: "nahomw79@gmail.com",
+      href: "mailto:nahomw79@gmail.com",
     },
     {
       icon: MapPin,
@@ -58,10 +58,10 @@ export function ContactSection() {
       href: null,
     },
     {
-      icon: Phone,
-      label: "Phone",
-      value: "+251 XXX XXX XXX",
-      href: "tel:+251XXXXXXXXX",
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "nahom-worku-8280a721b",
+      href: "https://www.linkedin.com/in/nahom-worku-8280a721b",
     },
   ]
 

@@ -11,9 +11,9 @@ export function Footer() {
   const isInView = useInView(ref, { once: true, margin: "-50px" })
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/nahomworku", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/nahomworku", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:nahomworku@285gmail.com", label: "Email" },
+    { icon: Github, href: "https://github.com/chombit", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/nahom-worku-8280a721b", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:nahomw79@gmail.com", label: "Email" },
   ]
 
   const scrollToTop = () => {

@@ -310,9 +310,9 @@ export function HeroSection() {
                 className="flex items-center justify-center lg:justify-start gap-4"
               >
                 {[
-                  { icon: Github, href: "https://github.com/nahomworku", label: "GitHub" },
-                  { icon: Linkedin, href: "https://linkedin.com/in/nahomworku", label: "LinkedIn" },
-                  { icon: Mail, href: "mailto:nahomworku@285gmail.com", label: "Email" },
+                  { icon: Github, href: "https://github.com/chombit", label: "GitHub" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/nahom-worku-8280a721b", label: "LinkedIn" },
+                  { icon: Mail, href: "mailto:nahomw79@gmail.com", label: "Email" },
                 ].map((social) => (
                   <motion.a
                     key={social.label}

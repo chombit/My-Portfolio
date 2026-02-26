@@ -15,7 +15,7 @@ const projects = [
     icon: Globe,
     tags: ["React.js", "Node.js", "PostgreSQL", "Prisma", "TypeScript"],
     image: "/projects/job-portal.jpg",
-    github: "https://github.com/nahomworku/job-portal",
+    github: "https://github.com/chombit/job-portal",
     demo: "https://job-portal-demo.vercel.app",
     featured: true,
     color: "from-emerald-500/20 to-teal-500/20",
@@ -27,7 +27,7 @@ const projects = [
     icon: Plane,
     tags: ["Next.js", "TypeScript", "Stripe", "MongoDB", "Tailwind CSS", "API Integration"],
     image: "/projects/kefko-travel.jpg",
-    github: "https://github.com/nahomworku/kefko-travel",
+    github: "https://github.com/chombit/kefko-travel",
     demo: "https://kefko-travel.vercel.app",
     featured: true,
     badge: "Client Project",
@@ -40,7 +40,7 @@ const projects = [
     icon: Smartphone,
     tags: ["Android", "Kotlin", "Firebase", "Room DB", "Material Design"],
     image: "/projects/healthcare.jpg",
-    github: "https://github.com/nahomworku/healthcare-app",
+    github: "https://github.com/chombit/healthcare-app",
     demo: null,
     featured: true,
     badge: "Internship Project",
@@ -53,7 +53,7 @@ const projects = [
     icon: Users,
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind"],
     image: "/projects/employee.jpg",
-    github: "https://github.com/nahomworku/employee-management",
+    github: "https://github.com/chombit/employee-management",
     demo: "https://employee-mgmt-demo.vercel.app",
     featured: false,
     color: "from-violet-500/20 to-purple-500/20",
@@ -65,7 +65,7 @@ const projects = [
     icon: Building2,
     tags: ["Next.js", "Stripe", "MongoDB", "Tailwind CSS", "Sanity CMS"],
     image: "/projects/ngo.jpg",
-    github: "https://github.com/nahomworku/ngo-website",
+    github: "https://github.com/chombit/ngo-website",
     demo: "https://ngo-site-demo.vercel.app",
     featured: false,
     color: "from-amber-500/20 to-orange-500/20",
@@ -449,7 +449,7 @@ export function ProjectsSection() {
               className="magnetic-btn border-border hover:border-primary hover:text-primary rounded-full bg-transparent group"
             >
               <a
-                href="https://github.com/nahomworku"
+                href="https://github.com/chombit"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center"
