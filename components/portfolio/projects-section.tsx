@@ -2,7 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import React, { useRef, useState, useEffect } from "react"
-import { ExternalLink, Github, Smartphone, Globe, Users, Building2, ArrowUpRight, Plane, Shield, Zap, Database } from "lucide-react"
+import { ExternalLink, Github, Smartphone, Globe, Users, Building2, ArrowUpRight, Plane, Shield, Zap, Database, ShoppingBag, Gamepad2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
@@ -27,7 +27,7 @@ const projects: Project[] = [
       "End-to-end architecture of a mission-critical banking platform for Sidama Bank. Implemented multi-layer security (2FA, TOTP, CAPTCHA), real-time exchange rate staging engines, and an institutional-grade CMS with full audit logging and versioning.",
     icon: Shield,
     tags: ["React 19", "Node.js", "MySQL", "Express", "Security", "Real-time Data"],
-    image: "/projects/sidama-bank.jpg",
+    image: "/projects/job-portal.jpg",
     github: null,
     demo: "https://sidamabank.com",
     featured: true,
@@ -35,9 +35,22 @@ const projects: Project[] = [
     color: "from-emerald-600/20 to-green-600/20",
   },
   {
+    title: "SkyHigh Betting Engine",
+    description:
+      "A real-time, multiplayer gaming platform inspired by Aviator. Features low-latency WebSocket synchronization, provably fair algorithms, and automated high-precision financial settlement.",
+    icon: Gamepad2,
+    tags: ["Node.js", "Socket.io", "React", "PostgreSQL", "Redis", "Security"],
+    image: "/projects/betting-engine.jpg",
+    github: "https://github.com/chombit/skyhigh-engine",
+    demo: null,
+    featured: true,
+    badge: "Real-time Systems",
+    color: "from-red-600/20 to-orange-600/20",
+  },
+  {
     title: "High-Throughput Transaction Engine",
     description:
-      "A distributed, fault-tolerant ledger service built with Go and Kafka, capable of processing 1M+ financial events/sec. Designed with horizontal scalability, circuit breakers, and distributed tracing for 99.99% system availability.",
+      "A distributed, fault-tolerant ledger service built with Go and Kafka, capable of processing 1M+ financial events/sec. Designed with horizontal scalability, circuit breakers, and distributed tracing.",
     icon: Zap,
     tags: ["Go", "Kafka", "Redis", "Distributed Systems", "gRPC", "Kubernetes"],
     image: "/projects/transaction-engine.jpg",
@@ -48,6 +61,19 @@ const projects: Project[] = [
     color: "from-blue-600/20 to-indigo-600/20",
   },
   {
+    title: "Scalable Microservices E-commerce",
+    description:
+      "A headless e-commerce architecture with real-time inventory management, multi-gateway payment processing, and automated warehouse synchronization.",
+    icon: ShoppingBag,
+    tags: ["Next.js", "Go", "Redis", "Stripe", "Docker", "Microservices"],
+    image: "/projects/ecommerce.jpg",
+    github: "https://github.com/chombit/microservices-ecommerce",
+    demo: null,
+    featured: true,
+    badge: "Microservices",
+    color: "from-purple-600/20 to-pink-600/20",
+  },
+  {
     title: "Job Portal Web Application",
     description:
       "A comprehensive job portal platform enabling employers to post jobs and candidates to apply seamlessly. Features include advanced search, application tracking, and real-time notifications.",
@@ -56,13 +82,13 @@ const projects: Project[] = [
     image: "/projects/job-portal.jpg",
     github: "https://github.com/chombit/job-portal",
     demo: "https://job-portal-demo.vercel.app",
-    featured: true,
+    featured: false,
     color: "from-emerald-500/20 to-teal-500/20",
   },
   {
     title: "Kefko Travel Agency",
     description:
-      "A modern travel booking platform for Kefko Travel Agency, featuring flight search, hotel reservations, tour packages, and payment integration. Includes admin dashboard for managing bookings and inventory.",
+      "A modern travel booking platform for Kefko Travel Agency, featuring flight search, hotel reservations, tour packages, and payment integration.",
     icon: Plane,
     tags: ["Next.js", "TypeScript", "Stripe", "MongoDB", "Tailwind CSS", "API Integration"],
     image: "/projects/kefko-travel.jpg",
@@ -126,9 +152,9 @@ function ProjectCard({
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="absolute inset-0 w-full h-full"
         >
-          {imageError ? (
-            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-              <project.icon className="h-16 w-16 text-primary/50" />
+          {imageError || !project.image ? (
+            <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center backdrop-blur-sm">
+              <project.icon className="h-20 w-20 text-primary/30" />
             </div>
           ) : (
             <Image
@@ -139,8 +165,7 @@ function ProjectCard({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={index < 2}
               onError={() => setImageError(true)}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+              unoptimized
             />
           )}
         </motion.div>
@@ -411,8 +436,8 @@ export function ProjectsSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === filterOption.id
-                    ? "bg-primary text-primary-foreground shadow-lg"
-                    : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent hover:border-border"
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent hover:border-border"
                   }`}
               >
                 {filterOption.label}
@@ -424,35 +449,20 @@ export function ProjectsSection() {
           </motion.div>
         </motion.div>
 
-        {/* Projects Grid with Enhanced Layout */}
+        {/* Projects Grid with Dynamic Layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto"
         >
-          {/* Pair 1: Job Portal & Kefko Travel (Featured Projects) */}
-          <div className="space-y-8">
-            {filteredProjects.slice(0, 2).map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
-          </div>
-
-          {/* Pair 2: Healthcare & Employee Management */}
-          <div className="space-y-8">
-            {filteredProjects.slice(2, 4).map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index + 2} />
-            ))}
-          </div>
-
-          {/* Pair 3: NGO Website (Centered) */}
-          {filteredProjects.length > 4 && (
-            <div className="md:col-span-2 flex justify-center">
-              <div className="w-full md:w-1/2">
-                <ProjectCard key={filteredProjects[4].title} project={filteredProjects[4]} index={4} />
+          {filteredProjects.map((project, index) => (
+            <div key={project.title} className={filteredProjects.length % 2 !== 0 && index === filteredProjects.length - 1 ? "md:col-span-2 flex justify-center" : ""}>
+              <div className={filteredProjects.length % 2 !== 0 && index === filteredProjects.length - 1 ? "w-full md:w-1/2" : "w-full"}>
+                <ProjectCard project={project} index={index} />
               </div>
             </div>
-          )}
+          ))}
         </motion.div>
 
         {/* Enhanced View More Section */}
@@ -501,9 +511,9 @@ export function ProjectsSection() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
         >
           {[
-            { number: "5+", label: "Projects", icon: "🚀" },
+            { number: "7+", label: "Projects", icon: "🚀" },
             { number: "3+", label: "Years Exp", icon: "💼" },
-            { number: "10+", label: "Tech Stack", icon: "⚡" },
+            { number: "15+", label: "Tech Stack", icon: "⚡" },
             { number: "100%", label: "Passion", icon: "❤️" },
           ].map((stat, index) => (
             <motion.div
