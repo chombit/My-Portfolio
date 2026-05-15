@@ -27,7 +27,7 @@ const projects: Project[] = [
       "End-to-end architecture of a mission-critical banking platform for Sidama Bank. Implemented multi-layer security (2FA, TOTP, CAPTCHA), real-time exchange rate staging engines, and an institutional-grade CMS with full audit logging and versioning.",
     icon: Shield,
     tags: ["React 19", "Node.js", "MySQL", "Express", "Security", "Real-time Data"],
-    image: "/projects/job-portal.jpg",
+    image: "",
     github: null,
     demo: "https://sidamabank.com",
     featured: true,
