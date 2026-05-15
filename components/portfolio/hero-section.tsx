@@ -238,7 +238,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl sm:text-2xl text-muted-foreground mb-4"
               >
-                Full-Stack Web Developer
+                Full-Stack Software Developer
               </motion.p>
 
               {/* Description */}
@@ -248,8 +248,8 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-base sm:text-lg text-muted-foreground/80 max-w-xl mb-10 leading-relaxed"
               >
-                I build accessible, pixel-perfect digital experiences with modern technologies.
-                Passionate about creating scalable web applications that make a real impact.
+                I design and build scalable, high-performance systems with modern technologies.
+                Passionate about architecting robust software solutions that solve complex real-world challenges.
               </motion.p>
 
               {/* CTA Buttons */}
