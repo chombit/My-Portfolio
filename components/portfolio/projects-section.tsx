@@ -28,7 +28,7 @@ const projects: Project[] = [
     icon: Shield,
     tags: ["React 19", "Node.js", "MySQL", "Express", "Security", "Real-time Data"],
     image: "",
-    github: null,
+    github: "https://github.com/firaghost/Websites",
     demo: "https://sidamabank.com",
     featured: true,
     badge: "Enterprise Project",
@@ -41,7 +41,7 @@ const projects: Project[] = [
     icon: Gamepad2,
     tags: ["Node.js", "Socket.io", "React", "PostgreSQL", "Redis", "Security"],
     image: "/projects/betting-engine.jpg",
-    github: "https://github.com/chombit/skyhigh-engine",
+    github: "https://github.com/chombit/Game-bet",
     demo: null,
     featured: true,
     badge: "Real-time Systems",
@@ -92,7 +92,7 @@ const projects: Project[] = [
     icon: Plane,
     tags: ["Next.js", "TypeScript", "Stripe", "MongoDB", "Tailwind CSS", "API Integration"],
     image: "/projects/kefko-travel.jpg",
-    github: "https://github.com/chombit/kefko-travel",
+    github: "https://github.com/chombit/KefkoTravel-Agency",
     demo: "https://kefko-travel.vercel.app",
     featured: false,
     badge: "Client Project",
@@ -229,18 +229,6 @@ function ProjectCard({
           )}
         </AnimatePresence>
 
-        {/* Floating Tech Indicator */}
-        <motion.div
-          className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: index * 0.15 + 0.5 }}
-        >
-          <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-background/80 backdrop-blur-sm text-xs text-muted-foreground">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span>Live</span>
-          </div>
-        </motion.div>
       </div>
 
       {/* Enhanced Card Content */}
