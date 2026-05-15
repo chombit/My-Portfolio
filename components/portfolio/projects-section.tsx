@@ -2,12 +2,51 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import React, { useRef, useState, useEffect } from "react"
-import { ExternalLink, Github, Smartphone, Globe, Users, Building2, ArrowUpRight, Plane } from "lucide-react"
+import { ExternalLink, Github, Smartphone, Globe, Users, Building2, ArrowUpRight, Plane, Shield, Zap, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 
-const projects = [
+interface Project {
+  title: string
+  description: string
+  icon: React.ElementType
+  tags: string[]
+  image: string
+  github: string | null
+  demo: string | null
+  featured: boolean
+  badge?: string
+  color: string
+}
+
+const projects: Project[] = [
+  {
+    title: "Institutional Banking Ecosystem",
+    description:
+      "End-to-end architecture of a mission-critical banking platform for Sidama Bank. Implemented multi-layer security (2FA, TOTP, CAPTCHA), real-time exchange rate staging engines, and an institutional-grade CMS with full audit logging and versioning.",
+    icon: Shield,
+    tags: ["React 19", "Node.js", "MySQL", "Express", "Security", "Real-time Data"],
+    image: "/projects/sidama-bank.jpg",
+    github: null,
+    demo: "https://sidamabank.com",
+    featured: true,
+    badge: "Enterprise Project",
+    color: "from-emerald-600/20 to-green-600/20",
+  },
+  {
+    title: "High-Throughput Transaction Engine",
+    description:
+      "A distributed, fault-tolerant ledger service built with Go and Kafka, capable of processing 1M+ financial events/sec. Designed with horizontal scalability, circuit breakers, and distributed tracing for 99.99% system availability.",
+    icon: Zap,
+    tags: ["Go", "Kafka", "Redis", "Distributed Systems", "gRPC", "Kubernetes"],
+    image: "/projects/transaction-engine.jpg",
+    github: "https://github.com/chombit/high-throughput-ledger",
+    demo: null,
+    featured: true,
+    badge: "System Design",
+    color: "from-blue-600/20 to-indigo-600/20",
+  },
   {
     title: "Job Portal Web Application",
     description:
@@ -29,7 +68,7 @@ const projects = [
     image: "/projects/kefko-travel.jpg",
     github: "https://github.com/chombit/kefko-travel",
     demo: "https://kefko-travel.vercel.app",
-    featured: true,
+    featured: false,
     badge: "Client Project",
     color: "from-sky-500/20 to-blue-500/20",
   },
@@ -42,33 +81,9 @@ const projects = [
     image: "/projects/healthcare.jpg",
     github: "https://github.com/chombit/healthcare-app",
     demo: null,
-    featured: true,
+    featured: false,
     badge: "Internship Project",
     color: "from-cyan-500/20 to-blue-500/20",
-  },
-  {
-    title: "Employee Management System",
-    description:
-      "Full-stack employee management solution with features for attendance tracking, leave management, performance reviews, and comprehensive HR analytics dashboard.",
-    icon: Users,
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Tailwind"],
-    image: "/projects/employee.jpg",
-    github: "https://github.com/chombit/employee-management",
-    demo: "https://employee-mgmt-demo.vercel.app",
-    featured: false,
-    color: "from-violet-500/20 to-purple-500/20",
-  },
-  {
-    title: "NGO Website & E-commerce",
-    description:
-      "A modern website for a non-profit organization with integrated e-commerce functionality for donations and merchandise, featuring a custom CMS for content management.",
-    icon: Building2,
-    tags: ["Next.js", "Stripe", "MongoDB", "Tailwind CSS", "Sanity CMS"],
-    image: "/projects/ngo.jpg",
-    github: "https://github.com/chombit/ngo-website",
-    demo: "https://ngo-site-demo.vercel.app",
-    featured: false,
-    color: "from-amber-500/20 to-orange-500/20",
   },
 ]
 
@@ -76,7 +91,7 @@ function ProjectCard({
   project,
   index,
 }: {
-  project: typeof projects[0]
+  project: Project
   index: number
 }) {
   const ref = useRef(null)
@@ -101,9 +116,8 @@ function ProjectCard({
         setIsHovered(false)
         setTechHovered(null)
       }}
-      className={`group relative rounded-2xl glass-card overflow-hidden transition-all duration-500 ${
-        isHovered ? "shadow-2xl shadow-primary/20 scale-[1.02]" : ""
-      }`}
+      className={`group relative rounded-2xl glass-card overflow-hidden transition-all duration-500 ${isHovered ? "shadow-2xl shadow-primary/20 scale-[1.02]" : ""
+        }`}
     >
       {/* Project Image with Enhanced Effects */}
       <div className="relative h-48 sm:h-56 overflow-hidden">
@@ -130,12 +144,11 @@ function ProjectCard({
             />
           )}
         </motion.div>
-        
+
         {/* Enhanced Image Overlay */}
-        <div className={`absolute inset-0 bg-gradient-to-t ${project.color} to-background/80 opacity-60 transition-opacity duration-300 ${
-          isHovered ? "opacity-40" : ""
-        }`} />
-        
+        <div className={`absolute inset-0 bg-gradient-to-t ${project.color} to-background/80 opacity-60 transition-opacity duration-300 ${isHovered ? "opacity-40" : ""
+          }`} />
+
         {/* Animated Badge */}
         {project.badge && (
           <motion.div
@@ -150,7 +163,7 @@ function ProjectCard({
             </Badge>
           </motion.div>
         )}
-        
+
         {/* Enhanced Quick Action Buttons */}
         <AnimatePresence>
           {isHovered && (
@@ -204,12 +217,12 @@ function ProjectCard({
           </div>
         </motion.div>
       </div>
-      
+
       {/* Enhanced Card Content */}
       <div className="p-6 sm:p-8 flex flex-col">
         {/* Header with Animated Icon */}
         <div className="flex items-center gap-3 mb-4">
-          <motion.div 
+          <motion.div
             whileHover={{ rotate: 10, scale: 1.1 }}
             transition={{ duration: 0.2 }}
             className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-all duration-300"
@@ -248,7 +261,7 @@ function ProjectCard({
         </div>
 
         {/* Enhanced Tags with Hover Effects */}
-        <motion.div 
+        <motion.div
           className="flex flex-wrap gap-2"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -268,8 +281,8 @@ function ProjectCard({
                 hidden: { opacity: 0, scale: 0.8 },
                 visible: { opacity: 1, scale: 1 }
               }}
-              whileHover={{ 
-                scale: 1.05, 
+              whileHover={{
+                scale: 1.05,
                 backgroundColor: "rgba(16, 185, 129, 0.1)",
                 color: "rgb(16, 185, 129)"
               }}
@@ -332,7 +345,7 @@ export function ProjectsSection() {
       {/* Enhanced Background Elements */}
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
       <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-[80px]" />
-      
+
       {/* Floating Code Elements */}
       <motion.div
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
@@ -360,7 +373,7 @@ export function ProjectsSection() {
           >
             Portfolio Showcase
           </motion.span>
-          
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -369,7 +382,7 @@ export function ProjectsSection() {
           >
             <span className="text-gradient">Featured Projects</span>
           </motion.h2>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -397,11 +410,10 @@ export function ProjectsSection() {
                 onClick={() => setFilter(filterOption.id)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  filter === filterOption.id
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === filterOption.id
                     ? "bg-primary text-primary-foreground shadow-lg"
                     : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent hover:border-border"
-                }`}
+                  }`}
               >
                 {filterOption.label}
                 <span className="ml-2 px-2 py-0.5 rounded-full bg-background/20 text-xs">
@@ -425,14 +437,14 @@ export function ProjectsSection() {
               <ProjectCard key={project.title} project={project} index={index} />
             ))}
           </div>
-          
+
           {/* Pair 2: Healthcare & Employee Management */}
           <div className="space-y-8">
             {filteredProjects.slice(2, 4).map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index + 2} />
             ))}
           </div>
-          
+
           {/* Pair 3: NGO Website (Centered) */}
           {filteredProjects.length > 4 && (
             <div className="md:col-span-2 flex justify-center">
@@ -467,7 +479,7 @@ export function ProjectsSection() {
                 View More on GitHub
               </a>
             </Button>
-            
+
             <motion.div
               animate={{ rotate: [0, 5, 0, -5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}

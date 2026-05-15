@@ -7,13 +7,13 @@ import Image from "next/image"
 
 const education = [
   {
-    degree: "Full Stack Web Development Training",
+    degree: "Full Stack Software Development Training",
     institution: "Addis Ababa University, AAIT",
     location: "Addis Ababa, Ethiopia",
     period: "2023",
     description:
-      "Intensive training program covering modern full-stack development including React.js, Node.js, TypeScript, PostgreSQL, and cloud deployment. Built multiple real-world projects.",
-    highlights: ["React.js & Next.js", "Node.js & Express", "PostgreSQL & Prisma", "TypeScript"],
+      "Intensive full-stack software engineering training program covering the end-to-end development lifecycle. Mastered comprehensive skills across Front End architecture, Backend API design, Database modeling, and DevOps deployment pipelines.",
+    highlights: ["Front End", "Backend", "Database", "DevOps"],
     icon: Award,
     image: "/education/aait.jpg",
     color: "from-emerald-500/20 to-teal-500/20",
@@ -54,11 +54,11 @@ function TimelineItem({
     >
       {/* Animated Timeline Line */}
       {!isLast && (
-        <motion.div 
+        <motion.div
           initial={{ height: 0 }}
           animate={isInView ? { height: "100%" } : {}}
           transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
-          className="absolute left-[11px] sm:left-[15px] top-12 bottom-0 w-px bg-gradient-to-b from-primary to-primary/20" 
+          className="absolute left-[11px] sm:left-[15px] top-12 bottom-0 w-px bg-gradient-to-b from-primary to-primary/20"
         />
       )}
 
@@ -78,7 +78,7 @@ function TimelineItem({
       </motion.div>
 
       {/* Content Card with Image */}
-      <motion.div 
+      <motion.div
         whileHover={{ y: -5, transition: { duration: 0.2 } }}
         className="glass-card rounded-2xl overflow-hidden group hover:border-primary/30 transition-all duration-300"
       >
@@ -97,9 +97,9 @@ function TimelineItem({
             />
           </motion.div>
           <div className={`absolute inset-0 bg-gradient-to-t ${item.color} to-background/90`} />
-          
+
           {/* Floating Period Badge */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: index * 0.2 + 0.4 }}
@@ -108,10 +108,10 @@ function TimelineItem({
             <Calendar className="h-4 w-4" />
             {item.period}
           </motion.div>
-          
+
           {/* Icon Badge */}
           <div className="absolute bottom-4 left-4">
-            <motion.div 
+            <motion.div
               whileHover={{ rotate: 10 }}
               className="p-3 rounded-xl bg-background/80 backdrop-blur-sm"
             >
@@ -119,7 +119,7 @@ function TimelineItem({
             </motion.div>
           </div>
         </div>
-        
+
         {/* Text Content */}
         <div className="p-6 sm:p-8">
           {/* Degree */}
@@ -142,7 +142,7 @@ function TimelineItem({
           </p>
 
           {/* Highlights with stagger */}
-          <motion.div 
+          <motion.div
             className="flex flex-wrap gap-2"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}

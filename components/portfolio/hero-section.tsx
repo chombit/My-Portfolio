@@ -11,10 +11,10 @@ export function HeroSection() {
   const [isDownloading, setIsDownloading] = useState(false)
   const [downloadComplete, setDownloadComplete] = useState(false)
   const [mounted, setMounted] = useState(false)
-  
+
   // Generate stable particle positions only on client
-  const [particles, setParticles] = useState<Array<{id: number, left: number, top: number}>>([])
-  
+  const [particles, setParticles] = useState<Array<{ id: number, left: number, top: number }>>([])
+
   useEffect(() => {
     setMounted(true)
     // Generate particles only on client side
@@ -25,19 +25,19 @@ export function HeroSection() {
     }))
     setParticles(generatedParticles)
   }, [])
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   const handleDownloadCV = async () => {
     setIsDownloading(true)
     setDownloadComplete(false)
-    
+
     try {
       // Create a link element and trigger download
       const link = document.createElement('a')
@@ -46,11 +46,11 @@ export function HeroSection() {
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
-      
+
       // Simulate completion for better UX
       await new Promise(resolve => setTimeout(resolve, 1500))
       setDownloadComplete(true)
-      
+
       // Reset after showing success state
       setTimeout(() => {
         setDownloadComplete(false)
@@ -70,9 +70,9 @@ export function HeroSection() {
     >
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
-      
+
       {/* Animated Background Image */}
-      <motion.div 
+      <motion.div
         style={{ y }}
         className="absolute inset-0 z-0"
       >
@@ -84,25 +84,25 @@ export function HeroSection() {
           priority
         />
       </motion.div>
-      
+
       {/* Gradient Orbs with Animation */}
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.3, 0.2]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" 
+        className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[128px]"
       />
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.1, 0.2, 0.1]
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary/10 rounded-full blur-[128px]" 
+        className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary/10 rounded-full blur-[128px]"
       />
-      
+
       {/* Floating Code Icons */}
       <motion.div
         animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
@@ -113,7 +113,7 @@ export function HeroSection() {
           <Code2 className="h-8 w-8 text-primary" />
         </div>
       </motion.div>
-      
+
       <motion.div
         animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
@@ -193,13 +193,13 @@ export function HeroSection() {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-[60%] left-[5%] hidden lg:block w-20 h-20 border-2 border-primary/20 rotate-45"
       />
-      
+
       <motion.div
         animate={{ rotate: -45, scale: [1.2, 1, 1.2] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         className="absolute top-[30%] right-[5%] hidden lg:block w-16 h-16 border-2 border-primary/20 rounded-full"
       />
-      
+
       <motion.div style={{ opacity }} className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-5 gap-12 items-center">
@@ -274,13 +274,12 @@ export function HeroSection() {
                   size="lg"
                   onClick={handleDownloadCV}
                   disabled={isDownloading}
-                  className={`magnetic-btn border-border hover:border-primary hover:text-primary px-8 py-6 text-base font-medium rounded-full bg-transparent transition-all duration-300 ${
-                    downloadComplete 
-                      ? 'border-green-500 text-green-500 bg-green-500/10' 
-                      : isDownloading 
-                      ? 'border-primary/50 text-primary/70' 
-                      : ''
-                  }`}
+                  className={`magnetic-btn border-border hover:border-primary hover:text-primary px-8 py-6 text-base font-medium rounded-full bg-transparent transition-all duration-300 ${downloadComplete
+                      ? 'border-green-500 text-green-500 bg-green-500/10'
+                      : isDownloading
+                        ? 'border-primary/50 text-primary/70'
+                        : ''
+                    }`}
                 >
                   <motion.div
                     animate={isDownloading ? { rotate: 360 } : { rotate: 0 }}
@@ -293,11 +292,11 @@ export function HeroSection() {
                       <Download className="h-4 w-4" />
                     )}
                   </motion.div>
-                  {downloadComplete 
-                    ? 'Downloaded!' 
-                    : isDownloading 
-                    ? 'Downloading...' 
-                    : 'Download CV'
+                  {downloadComplete
+                    ? 'Downloaded!'
+                    : isDownloading
+                      ? 'Downloading...'
+                      : 'Download CV'
                   }
                 </Button>
               </motion.div>
@@ -329,7 +328,7 @@ export function HeroSection() {
                 ))}
               </motion.div>
             </div>
-            
+
             {/* Modern Visual Element - Right Side */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -376,7 +375,7 @@ export function HeroSection() {
                         <Terminal className="h-4 w-4 text-primary/60" />
                       </motion.div>
                     </div>
-                    
+
                     {/* Terminal Content with Enhanced Animation */}
                     <div className="space-y-3 font-mono text-sm">
                       <motion.div
@@ -388,7 +387,7 @@ export function HeroSection() {
                         <span className="text-primary">$</span>
                         <span className="typing-animation">npm create portfolio@latest</span>
                       </motion.div>
-                      
+
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -398,7 +397,7 @@ export function HeroSection() {
                         <Command className="h-3 w-3" />
                         <span>✨ Creating modern portfolio...</span>
                       </motion.div>
-                      
+
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -408,7 +407,7 @@ export function HeroSection() {
                         <Braces className="h-3 w-3" />
                         <span>🚀 Deploying to production...</span>
                       </motion.div>
-                      
+
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -418,7 +417,7 @@ export function HeroSection() {
                         <span className="text-green-500">✓</span>
                         <span>Portfolio ready! 🎉</span>
                       </motion.div>
-                      
+
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -435,7 +434,7 @@ export function HeroSection() {
                         </motion.span>
                       </motion.div>
                     </div>
-                    
+
                     {/* Progress Bar */}
                     <motion.div
                       initial={{ width: 0 }}
@@ -451,7 +450,7 @@ export function HeroSection() {
                       />
                     </motion.div>
                   </motion.div>
-                  
+
                   {/* Floating Tech Icons */}
                   <motion.div
                     animate={{ rotate: -360 }}
@@ -462,7 +461,7 @@ export function HeroSection() {
                       <Code2 className="h-8 w-8 text-primary" />
                     </div>
                   </motion.div>
-                  
+
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -472,7 +471,7 @@ export function HeroSection() {
                       <Sparkles className="h-8 w-8 text-primary" />
                     </div>
                   </motion.div>
-                  
+
                   <motion.div
                     animate={{ rotate: -360 }}
                     transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
@@ -483,11 +482,11 @@ export function HeroSection() {
                     </div>
                   </motion.div>
                 </motion.div>
-                
+
                 {/* Glow Effects */}
                 <div className="absolute inset-0 rounded-full bg-primary/10 blur-[80px]" />
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/10 to-blue-500/10 blur-[100px]" />
-                
+
                 {/* Floating Badge */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}

@@ -20,29 +20,28 @@ import {
   Shield,
 } from "lucide-react"
 
-const frontendSkills = [
-  { name: "React.js", icon: Code2 },
-  { name: "Next.js", icon: Globe },
+const programmingLanguages = [
+  { name: "Python", icon: Terminal },
+  { name: "Go (Golang)", icon: Zap },
+  { name: "Java", icon: Server },
+  { name: "C++", icon: Code2 },
   { name: "TypeScript", icon: Terminal },
-  { name: "Tailwind CSS", icon: Layout },
   { name: "JavaScript", icon: Zap },
-  { name: "HTML/CSS", icon: Layers },
 ]
 
-const backendSkills = [
-  { name: "Node.js", icon: Server },
-  { name: "Express.js", icon: Globe },
-  { name: "PostgreSQL", icon: Database },
-  { name: "Prisma", icon: Database },
-  { name: "MongoDB", icon: Database },
-  { name: "REST APIs", icon: Cloud },
-]
-
-const otherSkills = [
-  { name: "Git & GitHub", icon: GitBranch },
-  { name: "Docker", icon: Layers },
-  { name: "Android Dev", icon: Smartphone },
+const architectureSkills = [
+  { name: "System Design", icon: Layers },
+  { name: "Microservices", icon: Server },
+  { name: "Cloud (AWS/GCP)", icon: Cloud },
+  { name: "Docker & K8s", icon: Layers },
   { name: "Security", icon: Shield },
+  { name: "REST/gRPC", icon: Globe },
+]
+
+const spokenLanguages = [
+  { name: "English (Professional)", icon: Globe },
+  { name: "Amharic (Native)", icon: Globe },
+  { name: "Sidamic (Native)", icon: Globe },
 ]
 
 const containerVariants = {
@@ -90,7 +89,7 @@ export function SkillsSection() {
     <section id="skills" className="py-24 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
-      
+
       <div className="container mx-auto px-4 lg:px-8" ref={ref}>
         {/* Section Header */}
         <motion.div
@@ -120,24 +119,24 @@ export function SkillsSection() {
             className="lg:col-span-2 p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
-            
+
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 rounded-xl bg-primary/10">
-                <Layout className="h-6 w-6 text-primary" />
+                <Terminal className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-foreground">Frontend Craftsmanship</h3>
-                <p className="text-sm text-muted-foreground">Creating stunning, responsive user experiences</p>
+                <h3 className="text-xl font-semibold text-foreground">Language Mastery</h3>
+                <p className="text-sm text-muted-foreground">Expertise in core programming languages</p>
               </div>
             </div>
-            
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               className="grid grid-cols-2 sm:grid-cols-3 gap-3"
             >
-              {frontendSkills.map((skill, index) => (
+              {programmingLanguages.map((skill, index) => (
                 <SkillBadge key={skill.name} skill={skill} index={index} />
               ))}
             </motion.div>
@@ -177,24 +176,24 @@ export function SkillsSection() {
             className="lg:col-span-2 p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
           >
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
-            
+
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 rounded-xl bg-primary/10">
                 <Server className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-foreground">Backend Architecture</h3>
-                <p className="text-sm text-muted-foreground">Engineering scalable, secure server solutions</p>
+                <h3 className="text-xl font-semibold text-foreground">System Architecture</h3>
+                <p className="text-sm text-muted-foreground">Engineering scalable, distributed solutions</p>
               </div>
             </div>
-            
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               className="grid grid-cols-2 sm:grid-cols-3 gap-3"
             >
-              {backendSkills.map((skill, index) => (
+              {architectureSkills.map((skill, index) => (
                 <SkillBadge key={skill.name} skill={skill} index={index} />
               ))}
             </motion.div>
@@ -209,18 +208,18 @@ export function SkillsSection() {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 rounded-xl bg-primary/10">
-                <Zap className="h-6 w-6 text-primary" />
+                <Globe className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">DevOps & Tools</h3>
+              <h3 className="text-xl font-semibold text-foreground">Communication</h3>
             </div>
-            
+
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               className="grid grid-cols-1 gap-3"
             >
-              {otherSkills.map((skill, index) => (
+              {spokenLanguages.map((skill, index) => (
                 <SkillBadge key={skill.name} skill={skill} index={index} />
               ))}
             </motion.div>
