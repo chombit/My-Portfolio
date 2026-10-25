@@ -42,7 +42,7 @@ export function HeroSection() {
       // Create a link element and trigger download
       const link = document.createElement('a')
       link.href = '/Nahom_Worku_CV.pdf'
-      link.download = 'Nahom_Worku_CV.pdf'
+      link.download = 'Nahom CV.pdf'
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
