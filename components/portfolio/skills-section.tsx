@@ -18,30 +18,47 @@ import {
   Layers,
   Cloud,
   Shield,
+  Sparkles,
+  Brain,
 } from "lucide-react"
 
 const programmingLanguages = [
-  { name: "Python", icon: Terminal },
-  { name: "Go (Golang)", icon: Zap },
-  { name: "Java", icon: Server },
-  { name: "C++", icon: Code2 },
-  { name: "TypeScript", icon: Terminal },
   { name: "JavaScript", icon: Zap },
+  { name: "Python", icon: Terminal },
+  { name: "TypeScript", icon: Terminal },
 ]
 
-const architectureSkills = [
-  { name: "System Design", icon: Layers },
-  { name: "Microservices", icon: Server },
-  { name: "Cloud (AWS/GCP)", icon: Cloud },
-  { name: "Docker & K8s", icon: Layers },
-  { name: "Security", icon: Shield },
-  { name: "REST/gRPC", icon: Globe },
+const frontendSkills = [
+  { name: "React", icon: Layout },
+  { name: "Next.js", icon: Globe },
+]
+
+const backendSkills = [
+  { name: "Node.js", icon: Server },
+  { name: "REST APIs", icon: Globe },
+]
+
+const databaseSkills = [
+  { name: "SQL Databases", icon: Database },
+  { name: "MongoDB", icon: Database },
+]
+
+const versionControlSkills = [
+  { name: "Git", icon: GitBranch },
+  { name: "GitHub", icon: GitBranch },
+]
+
+const aiSkills = [
+  { name: "RAG", icon: Brain },
+  { name: "Vector Databases", icon: Database },
+  { name: "LLM Integration", icon: Sparkles },
+  { name: "NLP", icon: Terminal },
 ]
 
 const spokenLanguages = [
-  { name: "English (Professional)", icon: Globe },
-  { name: "Amharic (Native)", icon: Globe },
-  { name: "Sidamic (Native)", icon: Globe },
+  { name: "English (Intermediate)", icon: Globe },
+  { name: "Amharic (Fluent)", icon: Globe },
+  { name: "Sidamu Afoo (Fluent)", icon: Globe },
 ]
 
 const containerVariants = {
@@ -110,13 +127,43 @@ export function SkillsSection() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {/* Frontend Card - Large */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {/* AI Development */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-2 p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
+            className="p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <Brain className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">AI Development</h3>
+              </div>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-1 gap-3"
+            >
+              {aiSkills.map((skill, index) => (
+                <SkillBadge key={skill.name} skill={skill} index={index} />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Languages & Core Tech */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
 
@@ -125,92 +172,8 @@ export function SkillsSection() {
                 <Terminal className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-foreground">Language Mastery</h3>
-                <p className="text-sm text-muted-foreground">Expertise in core programming languages</p>
+                <h3 className="text-xl font-semibold text-foreground">Languages & Core Tech</h3>
               </div>
-            </div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid grid-cols-2 sm:grid-cols-3 gap-3"
-            >
-              {programmingLanguages.map((skill, index) => (
-                <SkillBadge key={skill.name} skill={skill} index={index} />
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Stats Card - Small */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="p-6 sm:p-8 rounded-2xl glass-card flex flex-col justify-center"
-          >
-            <div className="text-center">
-              <motion.span
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="text-5xl sm:text-6xl font-bold text-gradient"
-              >
-                3+
-              </motion.span>
-              <p className="text-muted-foreground mt-2">Years of Experience</p>
-            </div>
-            <div className="mt-6 pt-6 border-t border-border">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Projects Completed</span>
-                <span className="text-lg font-semibold text-foreground">15+</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Backend Card - Medium */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-2 p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
-          >
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
-
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-primary/10">
-                <Server className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-foreground">System Architecture</h3>
-                <p className="text-sm text-muted-foreground">Engineering scalable, distributed solutions</p>
-              </div>
-            </div>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid grid-cols-2 sm:grid-cols-3 gap-3"
-            >
-              {architectureSkills.map((skill, index) => (
-                <SkillBadge key={skill.name} skill={skill} index={index} />
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Other Skills Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="p-6 sm:p-8 rounded-2xl glass-card"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-primary/10">
-                <Globe className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground">Communication</h3>
             </div>
 
             <motion.div
@@ -218,6 +181,154 @@ export function SkillsSection() {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               className="grid grid-cols-1 gap-3"
+            >
+              {programmingLanguages.map((skill, index) => (
+                <SkillBadge key={skill.name} skill={skill} index={index} />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Frontend */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <Layout className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">Frontend</h3>
+              </div>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-1 gap-3"
+            >
+              {frontendSkills.map((skill, index) => (
+                <SkillBadge key={skill.name} skill={skill} index={index} />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Backend */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <Server className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">Backend</h3>
+              </div>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-1 gap-3"
+            >
+              {backendSkills.map((skill, index) => (
+                <SkillBadge key={skill.name} skill={skill} index={index} />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Databases */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <Database className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">Databases</h3>
+              </div>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-1 gap-3"
+            >
+              {databaseSkills.map((skill, index) => (
+                <SkillBadge key={skill.name} skill={skill} index={index} />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Version Control */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="p-6 sm:p-8 rounded-2xl glass-card relative overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors" />
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <GitBranch className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">Version Control</h3>
+              </div>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-1 gap-3"
+            >
+              {versionControlSkills.map((skill, index) => (
+                <SkillBadge key={skill.name} skill={skill} index={index} />
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Communication Languages */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="md:col-span-2 lg:col-span-3 p-6 sm:p-8 rounded-2xl glass-card"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-primary/10">
+                <Globe className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">Languages</h3>
+              </div>
+            </div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-3"
             >
               {spokenLanguages.map((skill, index) => (
                 <SkillBadge key={skill.name} skill={skill} index={index} />

@@ -13,7 +13,7 @@ export function Footer() {
   const socialLinks = [
     { icon: Github, href: "https://github.com/chombit", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/nahom-worku-8280a721b", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:nahomw79@gmail.com", label: "Email" },
+    { icon: Mail, href: "mailto:nahomworku285@gmail.com", label: "Email" },
   ]
 
   const scrollToTop = () => {
@@ -106,7 +106,7 @@ export function Footer() {
             transition={{ delay: 0.5 }}
             className="flex items-center gap-6"
           >
-            {["About", "Skills", "Projects", "Contact"].map((link, index) => (
+            {["About", "Skills", "Experience", "Projects", "Contact"].map((link, index) => (
               <motion.a
                 key={link}
                 href={`#${link.toLowerCase()}`}

@@ -7,10 +7,10 @@ import Image from "next/image"
 
 const education = [
   {
-    degree: "Full Stack Software Development Training",
-    institution: "Addis Ababa University, AAIT",
+    degree: "FullStack Software Development",
+    institution: "Addis Ababa University",
     location: "Addis Ababa, Ethiopia",
-    period: "2023",
+    period: "2025",
     description:
       "Intensive full-stack software engineering training program covering the end-to-end development lifecycle. Mastered comprehensive skills across Front End architecture, Backend API design, Database modeling, and DevOps deployment pipelines.",
     highlights: ["Front End", "Backend", "Database", "DevOps"],
@@ -19,10 +19,22 @@ const education = [
     color: "from-emerald-500/20 to-teal-500/20",
   },
   {
+    degree: "Diploma in Project Management",
+    institution: "Alison Online",
+    location: "Online",
+    period: "2024 – 2025",
+    description:
+      "Comprehensive project management certification covering project planning, execution, monitoring, and closure. Learned industry-standard methodologies and best practices for successful project delivery.",
+    highlights: ["Project Planning", "Risk Management", "Team Leadership", "Agile Methodologies"],
+    icon: BookOpen,
+    image: "/education/alison.jpg",
+    color: "from-purple-500/20 to-pink-500/20",
+  },
+  {
     degree: "BSc in Computer Science",
     institution: "Ambo University",
     location: "Ambo, Ethiopia",
-    period: "2019 - 2023",
+    period: "2020 – 2024",
     description:
       "Comprehensive computer science education covering algorithms, data structures, software engineering, database systems, and mobile application development.",
     highlights: ["Software Engineering", "Data Structures", "Database Systems", "Android Development"],

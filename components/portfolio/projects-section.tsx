@@ -22,94 +22,69 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "EthioKey AI Mobile Keyboard",
+    description:
+      "Developed an offline-first Android custom keyboard using Jetpack Compose and React Native, featuring dynamic Fidel input mapping and on-device AI predictions. Built for Ethiopia with Amharic typing support, offline functionality, and smart text tools.",
+    icon: Smartphone,
+    tags: ["Android", "Jetpack Compose", "React Native", "AI", "Offline-first"],
+    image: "/projects/ethiokey-keyboard.jpg",
+    github: null,
+    demo: null,
+    featured: true,
+    badge: "Freelance Project",
+    color: "from-purple-600/20 to-pink-600/20",
+  },
+  {
+    title: "RAG-Integrated Telegram Bot",
+    description:
+      "Engineered an AI conversational agent using Python and vector store retrieval (RAG) to query complex unstructured domain documents in real time. Features context-aware responses, local AI processing, and seamless Telegram chat integration for accurate, knowledge-based answers.",
+    icon: Gamepad2,
+    tags: ["Python", "RAG", "Vector Store", "Telegram API", "AI", "NLP"],
+    image: "/projects/rag-bot.jpg",
+    github: null,
+    demo: null,
+    featured: true,
+    badge: "AI Project",
+    color: "from-blue-600/20 to-indigo-600/20",
+  },
+  {
+    title: "FaydaJobs.com",
+    description:
+      "Architected an end-to-end web job portal featuring candidate search pipelines, dynamic job filtering, and employer management interfaces.",
+    icon: Globe,
+    tags: ["React.js", "Node.js", "PostgreSQL", "Prisma", "TypeScript"],
+    image: "/projects/job-portal.jpg",
+    github: null,
+    demo: "https://faydajobs.com",
+    featured: true,
+    badge: "Freelance Project",
+    color: "from-emerald-500/20 to-teal-500/20",
+  },
+  {
+    title: "MalaZone Market Platform",
+    description:
+      "Built a multi-vendor ecommerce platform supporting merchant storefronts, dynamic product catalogs, and responsive mobile checkout flows.",
+    icon: ShoppingBag,
+    tags: ["Next.js", "TypeScript", "MongoDB", "Stripe", "Tailwind CSS", "API Integration"],
+    image: "/projects/ecommerce.jpg",
+    github: null,
+    demo: null,
+    featured: false,
+    badge: "Freelance Project",
+    color: "from-sky-500/20 to-blue-500/20",
+  },
+  {
     title: "Institutional Banking Ecosystem",
     description:
-      "End-to-end architecture of a mission-critical banking platform for Sidama Bank. Implemented multi-layer security (2FA, TOTP, CAPTCHA), real-time exchange rate staging engines, and an institutional-grade CMS with full audit logging and versioning.",
+      "Designed and deployed a production-grade corporate web platform for Sidama Bank's institutional banking services. Built an Enterprise HRM System for employee onboarding, leave approvals, and workforce analytics. Implemented a Shareholder Voting System with real-time vote aggregation and audit logging.",
     icon: Shield,
-    tags: ["React 19", "Node.js", "MySQL", "Express", "Security", "Real-time Data"],
-    image: "",
+    tags: ["React", "Node.js", "MySQL", "Express", "Security", "Real-time Data"],
+    image: "/projects/employee.jpg",
     github: "https://github.com/firaghost/Websites",
     demo: "https://sidamabank.com",
     featured: true,
     badge: "Enterprise Project",
     color: "from-emerald-600/20 to-green-600/20",
-  },
-  {
-    title: "SkyHigh Betting Engine",
-    description:
-      "A real-time, multiplayer gaming platform inspired by Aviator. Features low-latency WebSocket synchronization, provably fair algorithms, and automated high-precision financial settlement.",
-    icon: Gamepad2,
-    tags: ["Node.js", "Socket.io", "React", "PostgreSQL", "Redis", "Security"],
-    image: "/projects/betting-engine.jpg",
-    github: "https://github.com/chombit/Game-bet",
-    demo: null,
-    featured: true,
-    badge: "Real-time Systems",
-    color: "from-red-600/20 to-orange-600/20",
-  },
-  {
-    title: "High-Throughput Transaction Engine",
-    description:
-      "A distributed, fault-tolerant ledger service built with Go and Kafka, capable of processing 1M+ financial events/sec. Designed with horizontal scalability, circuit breakers, and distributed tracing.",
-    icon: Zap,
-    tags: ["Go", "Kafka", "Redis", "Distributed Systems", "gRPC", "Kubernetes"],
-    image: "/projects/transaction-engine.jpg",
-    github: "https://github.com/chombit/high-throughput-ledger",
-    demo: null,
-    featured: true,
-    badge: "System Design",
-    color: "from-blue-600/20 to-indigo-600/20",
-  },
-  {
-    title: "Scalable Microservices E-commerce",
-    description:
-      "A headless e-commerce architecture with real-time inventory management, multi-gateway payment processing, and automated warehouse synchronization.",
-    icon: ShoppingBag,
-    tags: ["Next.js", "Go", "Redis", "Stripe", "Docker", "Microservices"],
-    image: "/projects/ecommerce.jpg",
-    github: "https://github.com/chombit/microservices-ecommerce",
-    demo: null,
-    featured: true,
-    badge: "Microservices",
-    color: "from-purple-600/20 to-pink-600/20",
-  },
-  {
-    title: "Job Portal Web Application",
-    description:
-      "A comprehensive job portal platform enabling employers to post jobs and candidates to apply seamlessly. Features include advanced search, application tracking, and real-time notifications.",
-    icon: Globe,
-    tags: ["React.js", "Node.js", "PostgreSQL", "Prisma", "TypeScript"],
-    image: "/projects/job-portal.jpg",
-    github: "https://github.com/chombit/job-portal",
-    demo: "https://job-portal-demo.vercel.app",
-    featured: false,
-    color: "from-emerald-500/20 to-teal-500/20",
-  },
-  {
-    title: "Kefko Travel Agency",
-    description:
-      "A modern travel booking platform for Kefko Travel Agency, featuring flight search, hotel reservations, tour packages, and payment integration.",
-    icon: Plane,
-    tags: ["Next.js", "TypeScript", "Stripe", "MongoDB", "Tailwind CSS", "API Integration"],
-    image: "/projects/kefko-travel.jpg",
-    github: "https://github.com/chombit/KefkoTravel-Agency",
-    demo: "https://kefko-travel.vercel.app",
-    featured: false,
-    badge: "Client Project",
-    color: "from-sky-500/20 to-blue-500/20",
-  },
-  {
-    title: "Android Healthcare System",
-    description:
-      "A mobile healthcare application developed during internship, providing patients with appointment booking, health records management, and telemedicine features.",
-    icon: Smartphone,
-    tags: ["Android", "Kotlin", "Firebase", "Room DB", "Material Design"],
-    image: "/projects/healthcare.jpg",
-    github: "https://github.com/chombit/healthcare-app",
-    demo: null,
-    featured: false,
-    badge: "Internship Project",
-    color: "from-cyan-500/20 to-blue-500/20",
   },
 ]
 
@@ -348,8 +323,7 @@ export function ProjectsSection() {
   const filteredProjects = projects.filter(project => {
     if (filter === "all") return true
     if (filter === "featured") return project.featured
-    if (filter === "client") return project.badge === "Client Project"
-    if (filter === "internship") return project.badge === "Internship Project"
+    if (filter === "freelance") return project.badge === "Freelance Project"
     return true
   })
 
@@ -415,8 +389,7 @@ export function ProjectsSection() {
             {[
               { id: "all", label: "All Projects", count: projects.length },
               { id: "featured", label: "Featured", count: projects.filter(p => p.featured).length },
-              { id: "client", label: "Client Work", count: projects.filter(p => p.badge === "Client Project").length },
-              { id: "internship", label: "Internship", count: projects.filter(p => p.badge === "Internship Project").length },
+              { id: "freelance", label: "Freelance", count: projects.filter(p => p.badge === "Freelance Project").length },
             ].map((filterOption) => (
               <motion.button
                 key={filterOption.id}
@@ -499,9 +472,9 @@ export function ProjectsSection() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
         >
           {[
-            { number: "7+", label: "Projects", icon: "🚀" },
-            { number: "3+", label: "Years Exp", icon: "💼" },
-            { number: "15+", label: "Tech Stack", icon: "⚡" },
+            { number: "5+", label: "Projects", icon: "🚀" },
+            { number: "2+", label: "Years Exp", icon: "💼" },
+            { number: "10+", label: "Tech Stack", icon: "⚡" },
             { number: "100%", label: "Passion", icon: "❤️" },
           ].map((stat, index) => (
             <motion.div

@@ -238,7 +238,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl sm:text-2xl text-muted-foreground mb-4"
               >
-                Full-Stack Software Developer
+                Junior AI & Full-Stack Developer
               </motion.p>
 
               {/* Description */}
@@ -248,8 +248,7 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-base sm:text-lg text-muted-foreground/80 max-w-xl mb-10 leading-relaxed"
               >
-                I design and build scalable, high-performance systems with modern technologies.
-                Passionate about architecting robust software solutions that solve complex real-world challenges.
+                Junior AI & Full-Stack Developer passionate about building scalable web applications with React, Next.js, and Node.js, and integrating AI solutions like RAG and LLMs.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -311,7 +310,7 @@ export function HeroSection() {
                 {[
                   { icon: Github, href: "https://github.com/chombit", label: "GitHub" },
                   { icon: Linkedin, href: "https://www.linkedin.com/in/nahom-worku-8280a721b", label: "LinkedIn" },
-                  { icon: Mail, href: "mailto:nahomw79@gmail.com", label: "Email" },
+                  { icon: Mail, href: "mailto:nahomworku285@gmail.com", label: "Email" },
                 ].map((social) => (
                   <motion.a
                     key={social.label}
@@ -494,7 +493,7 @@ export function HeroSection() {
                   transition={{ delay: 0.8, duration: 0.5 }}
                   className="absolute -bottom-6 -right-6 px-4 py-2 rounded-full glass emerald-glow-sm"
                 >
-                  <span className="text-sm font-medium text-primary">3+ Years Exp</span>
+                  <span className="text-sm font-medium text-primary">2+ Years Exp</span>
                 </motion.div>
               </div>
             </motion.div>

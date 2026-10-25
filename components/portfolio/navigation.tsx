@@ -9,6 +9,7 @@ import { ThemeToggle, ThemeToggleCompact } from "@/components/ui/theme-toggle"
 const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
   { name: "Education", href: "#education" },
   { name: "Contact", href: "#contact" },
@@ -141,7 +142,7 @@ export function Navigation() {
             size="sm"
             className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6"
           >
-            <a href="mailto:nahomw79@gmail.com">Hire Me</a>
+            <a href="mailto:nahomworku285@gmail.com">Hire Me</a>
           </Button>
         </motion.div>
 
@@ -228,7 +229,7 @@ export function Navigation() {
                   asChild
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl"
                 >
-                  <a href="mailto:nahomw79@gmail.com" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="mailto:nahomworku285@gmail.com" onClick={() => setIsMobileMenuOpen(false)}>
                     Hire Me
                   </a>
                 </Button>

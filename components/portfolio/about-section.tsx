@@ -6,8 +6,8 @@ import { Code2, Rocket, Users, Coffee, Zap, Globe } from "lucide-react"
 import Image from "next/image"
 
 const stats = [
-  { value: "3+", label: "Years Building", icon: Rocket },
-  { value: "15+", label: "Projects Launched", icon: Code2 },
+  { value: "2+", label: "Years Building", icon: Rocket },
+  { value: "5+", label: "Projects Launched", icon: Code2 },
   { value: "100%", label: "Client Satisfaction", icon: Users },
   { value: "∞", label: "Ideas Generated", icon: Coffee },
 ]
@@ -65,7 +65,7 @@ export function AboutSection() {
             Crafting Digital Experiences That Matter
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Full-stack developer passionate about building innovative solutions that bridge the gap between 
+            Junior AI & Full-Stack Developer passionate about building innovative solutions that bridge the gap between
             creative design and powerful functionality
           </p>
         </motion.div>

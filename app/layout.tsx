@@ -5,9 +5,9 @@ import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Nahom Worku | Full-Stack Developer',
-  description: 'Full-Stack Web Developer specializing in React.js, Node.js, TypeScript, and PostgreSQL. Building scalable web applications with modern technologies.',
-  keywords: ['Full-Stack Developer', 'React.js', 'Node.js', 'TypeScript', 'Web Developer', 'Nahom Worku'],
+  title: 'Nahom Worku | Junior AI & Full-Stack Developer',
+  description: 'Junior AI & Full-Stack Developer specializing in React, Next.js, Node.js, AI integration, and building scalable web applications. Available for opportunities.',
+  keywords: ['AI Developer', 'Full-Stack Developer', 'React.js', 'Next.js', 'Node.js', 'JavaScript', 'Python', 'Web Developer', 'Nahom Worku'],
   authors: [{ name: 'Nahom Worku' }],
   icons: {
     icon: [
