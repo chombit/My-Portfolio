@@ -142,7 +142,7 @@ export function Navigation() {
             size="sm"
             className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6"
           >
-            <a href="mailto:nahomworku285@gmail.com">Hire Me</a>
+            <a href="#contact">Hire Me</a>
           </Button>
         </motion.div>
 
@@ -229,7 +229,7 @@ export function Navigation() {
                   asChild
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl"
                 >
-                  <a href="mailto:nahomworku285@gmail.com" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
                     Hire Me
                   </a>
                 </Button>
